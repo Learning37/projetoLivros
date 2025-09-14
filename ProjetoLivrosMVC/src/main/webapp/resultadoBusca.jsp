@@ -1,23 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Livro" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Livros</title>
+    <title>Resultados da Busca</title>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
-    
 </head>
 <body>
-    <h1> &#x1F4DA; Lista de Livros</h1>
+    <h1>📚 Resultados da Busca</h1>
 
     <div class="lista-livros">
         <%
         	@SuppressWarnings("unchecked")
-            List<Livro> livros = (List<Livro>) request.getAttribute("livros");
-            if (livros != null && !livros.isEmpty()) {
-                for (Livro livro : livros) {
+            List<Livro> resultados = (List<Livro>) request.getAttribute("resultados");
+            if (resultados != null && !resultados.isEmpty()) {
+                for (Livro livro : resultados) {
         %>
         <div class="livro-card">
             <h2><%= livro.getTitulo() %></h2>
@@ -28,21 +28,24 @@
             <div class="botoes-livro">
                 <a href="LivroServlet?acao=editar&id=<%= livro.getId() %>">&#x270F; Editar</a>
                 <a href="LivroServlet?acao=excluir&id=<%= livro.getId() %>" 
-   				onclick="return confirm('Tem certeza que deseja excluir este livro?');">&#x1F5D1; Excluir</a>
+                   onclick="return confirm('Tem certeza que deseja excluir este livro?');">
+                   &#x1F5D1; Excluir
+                </a>
             </div>
         </div>
         <%
                 }
             } else {
         %>
-        <p>Nenhum livro cadastrado.</p>
+        <p>Nenhum livro encontrado para o termo pesquisado.</p>
         <%
             }
         %>
     </div>
 
-    <div style="text-align:center; margin-top:20px;">
-        <a href="index.jsp" class="botaoVoltar"> &#x21A9; Voltar ao menu</a>
+    <div style="display:flex; justify-content:center; gap:15px; margin-top:25px;">
+        <a href="buscar.jsp" class="botaoVoltar">&#x1F50D; Nova busca</a>
+        <a href="index.jsp" class="botaoVoltar">&#x21A9; Voltar ao menu</a>
     </div>
 </body>
 </html>

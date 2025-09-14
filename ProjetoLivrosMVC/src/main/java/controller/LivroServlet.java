@@ -40,6 +40,12 @@ public class LivroServlet extends HttpServlet {
             dao.excluir(id);
             response.sendRedirect("LivroServlet?acao=listar");
         }
+        else if (acao.equals("buscar")) {
+            String termo = request.getParameter("termo");
+            List<Livro> resultados = dao.buscarPorTituloOuAutor(termo);
+            request.setAttribute("resultados", resultados);
+            request.getRequestDispatcher("resultadoBusca.jsp").forward(request, response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

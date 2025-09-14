@@ -8,7 +8,7 @@
 <link rel="stylesheet"  href="css/estilo.css">
 </head>
 <body>
-	<h1>🔍 Buscar Livro</h1>
+	<h1> &#x1F50D; Buscar Livro</h1>
     
     <form action="LivroServlet" method="get">
         <label for="termo">Título ou Autor:</label><br>
@@ -18,6 +18,7 @@
         		<button type="submit" class="botaoForm" >Pesquisar</button>
         	</div>
         <input type="hidden" name="acao" value="buscar">
+        
     </form>
     
     <br>
